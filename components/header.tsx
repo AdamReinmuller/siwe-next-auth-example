@@ -1,15 +1,15 @@
-import { signOut, useSession } from "next-auth/react"
-import Link from "next/link"
-import { useDisconnect } from "wagmi"
-import styles from "./header.module.css"
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useDisconnect } from "wagmi";
+import styles from "./header.module.css";
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
-  const { data: session, status } = useSession()
-  const loading = status === "loading"
-  const { disconnect } = useDisconnect()
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+  const { disconnect } = useDisconnect();
 
   return (
     <header>
@@ -18,7 +18,9 @@ export default function Header() {
       </noscript>
       <div className={styles.signedInStatus}>
         <p
-          className={`nojs-show ${!session && loading ? styles.loading : styles.loaded}`}
+          className={`nojs-show ${
+            !session && loading ? styles.loading : styles.loaded
+          }`}
         >
           {!session && (
             <>
@@ -44,9 +46,9 @@ export default function Header() {
                 href={`/api/auth/signout`}
                 className={styles.button}
                 onClick={(e) => {
-                  e.preventDefault()
-                  disconnect()
-                  signOut()
+                  e.preventDefault();
+                  disconnect();
+                  signOut();
                 }}
               >
                 Sign out
@@ -58,17 +60,13 @@ export default function Header() {
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href="/">
-              Home
-            </Link>
+            <Link href="/">Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/siwe">
-              SIWE
-            </Link>
+            <Link href="/siwe">SIWEEE</Link>
           </li>
         </ul>
       </nav>
     </header>
-  )
+  );
 }
